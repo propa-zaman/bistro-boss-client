@@ -14,7 +14,7 @@ const Testimonials = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('reviews.json')
+        fetch('https://bistro-boss-server-six.vercel.app/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
