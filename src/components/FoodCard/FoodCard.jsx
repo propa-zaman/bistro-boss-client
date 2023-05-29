@@ -1,12 +1,13 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
-import Swal from "sweetalert2";
 import { useContext } from "react";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hook/useCart";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
-const FoodCard = ({item}) => {
-    const {name, image, price, recipe, _id} = item;
+
+const FoodCard = ({ item }) => {
+    const { name, image, price, recipe, _id } = item;
     const {user} = useContext(AuthContext);
     const [, refetch] = useCart();
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const FoodCard = ({item}) => {
         console.log(item);
         if(user && user.email){
             const cartItem = {menuItemId: _id, name, image, price, email: user.email}
-            fetch('http://localhost:5001/carts', {
+            fetch('https://bistro-boss-server-propa-zaman.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -52,7 +53,6 @@ const FoodCard = ({item}) => {
               })
         }
     }
-
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img src={image} alt="Shoes" /></figure>
@@ -61,7 +61,7 @@ const FoodCard = ({item}) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions justify-end">
-                    <button onClick={()=> handleAddToCart(item)} className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4">Add to Cart</button>
+                    <button onClick={() => handleAddToCart(item)} className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4">Add to Cart</button>
                 </div>
             </div>
         </div>
