@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query' //home page e okee setup korte hobe
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 
